@@ -1,7 +1,7 @@
 import { CompanyService } from './../../services/company.service';
 import { Component, OnInit } from '@angular/core';
 import { AffituarioPrenotaRouteService } from 'src/app/services/affituario-prenota-route.service';
-
+//comment per prova su githbu
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
