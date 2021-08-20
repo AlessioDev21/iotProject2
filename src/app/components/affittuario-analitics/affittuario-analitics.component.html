@@ -58,11 +58,30 @@
       </div>
     </div>
   </div>
-  <div  class="row" style="margin-bottom: 5%; border-radius:30px; background-color: rgba(255, 255, 255, 0.878);">
+  <div  class="row" style="margin-bottom: 4%; border-radius:30px; background-color: rgba(255, 255, 255, 0.878);">
     <canvas baseChart  height="100" width="fit-content"
     [datasets]="lineChartData"
     [labels]="lineChartLabels"
     [colors]="lineChartColors"
+    chartType="line"
+    >
+  </canvas>
+</div>
+ </div>
+
+
+ <div *ngIf="show2">
+  <div class="row">
+    <div class="col-sm" style=" width: fit-content; text-align:center ">
+      <h2 style="background-color: rgba(255, 255, 255, 0.911);border-radius:50px">Booking trend cost</h2>
+
+    </div>
+  </div>
+  <div  class="row" style="margin-bottom: 5%; border-radius:30px; background-color: rgba(255, 255, 255, 0.878);">
+    <canvas baseChart  height="100" width="fit-content"
+    [datasets]="lineChartDataCost"
+    [labels]="lineChartLabels"
+    [colors]="lineChartColorsCost"
     chartType="line"
     >
   </canvas>

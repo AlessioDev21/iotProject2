@@ -70,10 +70,13 @@
 
   </li>
   <li >
-    Web Site: <strong  style="color:blue">{{travelInfo.companyOwnerViaggio.webSite}}</strong>
+    Web Site:  <a href="http://{{travelInfo.companyOwnerViaggio.webSite}}" target="_blank">
+      <strong  style="color:blue">{{travelInfo.companyOwnerViaggio.webSite}}</strong>
+
+    </a>
   </li>
   <li >
-    Cost per KM: <strong  style="color:blue">{{travelInfo.costoKm}} &euro;</strong>
+    Cost per KM: <strong  style="color:blue">{{travelInfo.costoKm}} &#36;</strong>
   </li>
 </ul>
 <br>
@@ -89,7 +92,7 @@
 
   </li>
   <li>
-    Vector Overall Capacity:  <strong style="color:blue"> {{travelInfo.vectorOwnerViaggio.capacity}}</strong>
+    Vector Overall Capacity:  <strong style="color:blue"> {{travelInfo.vectorOwnerViaggio.capacity}} kg</strong>
 
    </li>
    <li *ngIf="travelInfo.vectorOwnerViaggio.biomedicalProducts && !travelInfo.vectorOwnerViaggio.frozenProduct">

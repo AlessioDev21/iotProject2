@@ -61,7 +61,7 @@ export class AffittuarioAnaliticsComponent implements OnInit {
 
 
     lineChartData: ChartDataSets[] = [
-      { data:this.data, label: 'Booking trend of '+this.filterYear }
+      { data:this.data, label: 'Booking trend of '+this.filterYear+' ' }
     ];
     lineChartLabels: Label[] = [
       'January',
@@ -81,13 +81,31 @@ export class AffittuarioAnaliticsComponent implements OnInit {
     lineChartColors: Color[] = [
       {
         borderColor: '#5677fc',
-        pointHoverBorderWidth:25,
-        pointBorderWidth:4,
+        pointHoverBorderWidth:40,
+        pointBorderWidth:1,
 
 
       }
     ];
     show=false;
+    // line cahrt cost
+    dataCost:number[]=[0,0,0,0,0,0,0,0,0,0,0,0];
+
+    lineChartDataCost: ChartDataSets[] = [
+      { data:this.dataCost, label: 'Cost incurred in $ ' }
+    ];
+
+
+    lineChartColorsCost: Color[] = [
+      {
+        borderColor: '#e51c23',
+        pointHoverBorderWidth:40,
+        pointBorderWidth:1,
+      }
+    ];
+
+
+    show2=false;
 
 
   constructor(private viaggioService: ViaggioService, private routeService: RouteService,
@@ -108,9 +126,9 @@ export class AffittuarioAnaliticsComponent implements OnInit {
     }, 1800);
   }
 
-  reset(){}
   applyFilter(){
     this.data=[0,0,0,0,0,0,0,0,0,0,0,0];
+    this.dataCost=[0,0,0,0,0,0,0,0,0,0,0,0];
     let year=this.filterYear;
     for(let i=0; i<this.allViaggioInfo.length;i++){
       let d1=new Date(this.allViaggioInfo[i].prenotationDate);
@@ -154,8 +172,55 @@ export class AffittuarioAnaliticsComponent implements OnInit {
     }
     this.lineChartData[0].data=this.data;
     this.lineChartData[0].label='Booking trend of '+this.filterYear
+    //////////////////////////////
+      //code for cost chart
+    for (let i=0; i< this.allViaggioInfo.length;i++){
+        let d1=new Date(this.allViaggioInfo[i].prenotationDate);
+        if(d1.getFullYear()==year && d1.getMonth()==0){
+          //january
+          this.dataCost[0]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==1){
+          this.dataCost[1]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==2){
+          this.dataCost[2]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==3){
+          this.dataCost[3]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
 
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==4){
+          this.dataCost[4]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
 
+        if(d1.getFullYear()==year && d1.getMonth()==5){
+          this.dataCost[5]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==6){
+          this.dataCost[6]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==7){
+          this.dataCost[7]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==8){
+          this.dataCost[8]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==9){
+          this.dataCost[9]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==10){
+          this.dataCost[10]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==11){
+          this.dataCost[11]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+    }
+    for(let i=0;i<this.dataCost.length;i++){
+        this.dataCost[i]=Math.round(this.dataCost[i])
+    }
+    this.lineChartDataCost[0].data=this.dataCost
   }
 
   loadViaggioInfo(){
@@ -281,6 +346,56 @@ export class AffittuarioAnaliticsComponent implements OnInit {
       this.show=true;
       console.log(this.data)
 
+      //code for cost chart
+      for (let i=0; i< this.allViaggioInfo.length;i++){
+        let d1=new Date(this.allViaggioInfo[i].prenotationDate);
+        if(d1.getFullYear()==year && d1.getMonth()==0){
+          //january
+          this.dataCost[0]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==1){
+          this.dataCost[1]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==2){
+          this.dataCost[2]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==3){
+          this.dataCost[3]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==4){
+          this.dataCost[4]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+
+        if(d1.getFullYear()==year && d1.getMonth()==5){
+          this.dataCost[5]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==6){
+          this.dataCost[6]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==7){
+          this.dataCost[7]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==8){
+          this.dataCost[8]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==9){
+          this.dataCost[9]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==10){
+          this.dataCost[10]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+        if(d1.getFullYear()==year && d1.getMonth()==11){
+          this.dataCost[11]+=(this.allViaggioInfo[i].costoKm* this.allViaggioInfo[i].routes[0].distanceKm)
+        }
+      }
+      for(let i=0;i<this.dataCost.length;i++){
+        this.dataCost[i]=Math.round(this.dataCost[i])
+      }
+      this.show2=true
+      console.log(this.dataCost)
+      ///////////////////////
 
   }
 
