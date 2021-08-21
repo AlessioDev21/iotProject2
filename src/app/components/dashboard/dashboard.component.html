@@ -249,12 +249,11 @@
 
   ></highcharts-chart>
 
-  <highcharts-chart  *ngIf="searchView" style="border: 1px solid rgb(4, 0, 255); border-radius: 30px;"
+  <highcharts-chart *ngIf="searchView"   style="border: 1px solid rgb(4, 0, 255); border-radius: 30px;"
     [Highcharts]="pie"
     [options]="pieOptions"
 
   ></highcharts-chart>
-
   <h1 style="position: relative; top: -200px; text-align:center; font-family: sans-serif;" *ngIf="percentuali.length == 0"> No data in the selected period</h1>
     </div>
 

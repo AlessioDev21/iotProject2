@@ -278,7 +278,8 @@ export class DashboardComponent implements OnInit {
     this.spinnerService.show();
     setTimeout(() => {
       this.spinnerService.hide();
-    }, 500);
+
+    }, 2100);
 
 
 }
@@ -293,7 +294,7 @@ export class DashboardComponent implements OnInit {
 
           await new Promise<void> ((resolve, reject) => {
           this.routeService.getCoordinates(rotta.endCity).subscribe( (result : any) =>{
-
+            console.log(result)
             var toAdd : boolean = true;
             var nation : string = result.features[0].context[result.features[0].context.length - 1].text;
 
@@ -945,7 +946,7 @@ this.pieOptions = {
       }
   },
   title: {
-      text: 'Major beneficiary companies'
+      text: 'Consumer\'s spending distribution'
   },
   accessibility: {
       point: {
@@ -1516,6 +1517,7 @@ yAxis: {
 }
 
 async getBookings(){
+
 
   await new Promise<void> ((resolve, reject) => {
   this.bookingService.getAll().subscribe(async data =>{
@@ -2326,7 +2328,7 @@ aggiornaConteggio( nation : string) {
 }
 
   async search(){
-
+    this.spinnerService.show();
     this.KgRicerca = 0;
     this.soldiRicerca = 0;
     this.offerteRicerca = 0;
@@ -2334,7 +2336,6 @@ aggiornaConteggio( nation : string) {
     this.subscribersRicerca = 0;
     this.percentuali = [];
     this.fatturati = [];
-
 
     this.nationsCount = [] ;
 
@@ -2434,13 +2435,12 @@ aggiornaConteggio( nation : string) {
       this.bookings = data;
 
       await new Promise<void> (async (resolve, reject) => {
-        for (const booking of data) {
-
+        for  await (const booking of data) {
           await new Promise<void> ((resolve, reject) => {
           this.viaggioRouteService.getById(booking.viaggioRouteId).subscribe(async viaggioRoute =>{
 
             var date3 : Date = new Date(viaggioRoute.endDate);
-            if(date3 >= this.ricerca.dateStart &&date3 <= this.ricerca.dateEnd){
+            if(date3 >= this.ricerca.dateStart && date3 <= this.ricerca.dateEnd){
             var costo : number;
             var distance : number;
             var prezzo : number;
@@ -2484,12 +2484,17 @@ aggiornaConteggio( nation : string) {
             });
           });
             resolve();
-        }
+            }
+            else{
+              resolve();
+            }
           });
 
         });
           resolve();
         }
+        console.log("fatturato")
+        console.log(this.fatturati)
         for(var i = 0; i< this.fatturati.length;i ++){
 
           var percFatt : PercentualeFatturato  = {} as PercentualeFatturato;
@@ -2557,6 +2562,79 @@ aggiornaConteggio( nation : string) {
   });
 
   setTimeout(()=>{
+    this.mapOptions = {
+      chart: {
+        map: worldMap,
+        heigth : 700,
+        width: 700
+        },
+      title: {
+        text: 'MAP WORLD'
+      },
+
+      subtitle: {
+        text:
+        'Trend of world country in witch we deliver'
+      },
+      mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+          verticalAlign: 'bottom'
+      }
+      },
+      legend: {
+        enabled: true
+      },
+      colorAxis: {
+        min: 0
+      },
+
+      xAxis: {
+        visible: false,
+
+    },
+
+    yAxis: {
+        visible: false,
+
+    },
+
+      series: [
+        {
+          type: "map",
+          name: 'Deliveries in',
+          color: '#FF0000',
+          states: {
+
+            hover: {
+              color: '#FF0000',
+            }
+          },
+          dataLabels: {
+            format: "{point.name}"
+          },
+          allAreas: true,
+          data:
+          [
+            ['it', this.italiaCount],
+            ['ru', this.russiaCount],
+            ['fr', this.franciaCount],
+            ['us', this.usaCount],
+            ['gb', this.regnoUnitoCount],
+            ['es', this.spagnaCount],
+            ['in', this.indiaCount],
+            ['ca', this.canadaCount],
+            ['cn', this.cinaCount],
+            ['jp', this.giapponeCount],
+            ['gr', this.greciaCount],
+            ['ch', this.svizzeraCount],
+            ['de', this.germaniaCount],
+            ['pt', this.portogalloCount]
+          ]
+        }
+      ]
+    };
+
     this.pieOptions = {
       chart: {
           type: 'pie',
@@ -2568,7 +2646,7 @@ aggiornaConteggio( nation : string) {
           }
       },
       title: {
-          text: 'Major beneficiary companies'
+          text: 'Consumer\'s spending distribution'
       },
       accessibility: {
           point: {
@@ -2598,6 +2676,9 @@ aggiornaConteggio( nation : string) {
 
     }
   },2000);
+
+  setTimeout(()=>{this.spinnerService.hide();},2000)
+
 }
 
 recharge(){
