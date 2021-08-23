@@ -29,6 +29,8 @@ export class BookingModalComponent implements OnInit {
   routeSelected: Route={} as Route;
   requiredCapacity: number=-1;
   affittuario: Affittuario={} as Affittuario;
+  startRoute: any;
+  endRoute: any;
 
 
   constructor(public dialogRef: MatDialogRef<BookingModalComponent>,private router: Router,private matDialog : MatDialog,
@@ -39,6 +41,14 @@ export class BookingModalComponent implements OnInit {
     this.travelSelected=JSON.parse(String(localStorage.getItem('viaggioSelected')));
     this.routeSelected=JSON.parse(String(localStorage.getItem('routeSelected')));
     console.log(this.travelSelected)
+    for(let i=0; i<this.travelSelected.viaggioRouteInfo.length;i++){
+      if(this.travelSelected.viaggioRouteInfo[i].routeId == this.routeSelected.id){
+        this.startRoute=this.travelSelected.viaggioRouteInfo[i].startDate;
+        this.endRoute=this.travelSelected.viaggioRouteInfo[i].endDate;
+        break;
+      }
+    }
+
   }
 
   closeModal() {

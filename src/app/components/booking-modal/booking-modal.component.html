@@ -15,12 +15,12 @@
         <!-- stat city   end-city route selected -->
         <div class="input-group" style="padding-top: 3%;">
           <span class="input-group-addon"><i class="bi bi-flag" aria-hidden="true"></i></span>
-        <input type="text" class="form-control" style="margin-right: 20%"  placeholder="{{routeSelected.startCity}}" readonly  />
+        <input type="text" class="form-control" style="margin-right: 20%"  placeholder="{{routeSelected.startCity}}  {{startRoute|date:  'dd/MM/yyyy HH:mm': '+0000'}}" readonly  />
         </div>
         <!-- end city -->
         <div class="input-group" style="padding-top: 3%;">
           <span class="input-group-addon"><i class="bi bi-flag-fill" aria-hidden="true"></i></span>
-        <input type="text" class="form-control" style="margin-right: 20%"  placeholder="{{routeSelected.endCity}}" readonly  />
+        <input type="text" class="form-control" style="margin-right: 20%"  placeholder="{{routeSelected.endCity}} {{endRoute|date:  'dd/MM/yyyy HH:mm': '+0000'}} " readonly  />
         </div>
 
     <!--  vehicle name  -->
@@ -43,6 +43,9 @@
     <span class="input-group-addon"><i class="bi bi-building" aria-hidden="true"></i></span>
   <input type="text" class="form-control" style="margin-right: 20%"  placeholder="{{travelSelected.companyOwnerViaggio.name}}" readonly  />
 </div>
+<!-- start date of -->
+
+
 <!-- maximum with drawl and booking date -->
 <div class="input-group" style="padding-top: 3%;" *ngIf="travelSelected.viaggioRouteInfo[0].maximumBookingDate!= null">
   <span class="input-group-addon"><i class="bi bi-calendar-check" aria-hidden="true"></i></span>
