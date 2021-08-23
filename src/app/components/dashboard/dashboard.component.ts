@@ -1754,7 +1754,7 @@ setActualMonth(mese : string){
     }
     HC_exporting(Highcharts)
 
-  },200)
+  },500)
 
 
 }
