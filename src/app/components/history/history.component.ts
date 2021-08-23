@@ -110,7 +110,6 @@ export class HistoryComponent implements OnInit {
             console.log(fatto)
             this.spinnerService.hide();
             this.openModal("Your cancellation request has been realized");
-
           }
         )
     }

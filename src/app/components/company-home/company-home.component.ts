@@ -536,7 +536,7 @@ async addNewOffer(){
           }
 
 
-                    //prima rotta,abbiamo l'informazione della starting Date
+          //prima rotta,abbiamo l'informazione della starting Date
         if(i == 0){
 
           //start date
@@ -579,8 +579,13 @@ async addNewOffer(){
           viaggioRoute.startDate = this.startDates[i - 1];
           viaggioRoute.maximumBookingDate = this.convertBookingDate(this.startDates[i - 1])
           if(this.newOffer.enableCancelation)
-            viaggioRoute.maximumWithdrawal = this.convertDate(this.newOffer.startDate);
-
+ /////////////////////////////// pericolo !!!!!!   this.stardDates[i-1]
+          // riga precedente  da sostituire a questa se qualcos non va
+          /*
+          viaggioRoute.maximumWithdrawal = this.convertDate(this.newOffer.startDate);
+          */
+            viaggioRoute.maximumWithdrawal = this.convertDate(this.startDates[i-1]);
+////////////////////////////////////////////
 
           if(i != this.treatsCity.length){
             //end date
@@ -716,7 +721,7 @@ async addNewOffer(){
           viaggioRoute.startDate = this.startDates[i - 1] ;
           viaggioRoute.maximumBookingDate = this.convertBookingDate(this.startDates[i - 1]);
           if(this.newOffer.enableCancelation)
-            viaggioRoute.maximumWithdrawal = this.convertDate(this.newOffer.startDate);
+            viaggioRoute.maximumWithdrawal = this.convertDate(this.startDates[i-1]);
 
 
           if(i != this.treatsCity.length){
@@ -891,7 +896,6 @@ selectNext(){
 convertDate(date : Date ) : Date{
 
   var newDate : Date = new Date();
-  console.log("qui")
   if(this.newOffer.maximumWithdrawal == '1 hour'){
 
     newDate.setTime(date.getTime() - (60*60*1000));

@@ -3,7 +3,8 @@
   background-image: url('https://t3.ftcdn.net/jpg/03/13/73/56/360_F_313735618_kFi8yhrwHlUt4dfpGR1O017ZLjcIVw96.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 320vh !important;
+  height: fit-content !important;
+  min-height: 130vh !important;
   background-position: center;
   font-family: 'Numans', sans-serif;
 }

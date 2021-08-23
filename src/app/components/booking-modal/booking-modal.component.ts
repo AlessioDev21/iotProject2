@@ -31,6 +31,8 @@ export class BookingModalComponent implements OnInit {
   affittuario: Affittuario={} as Affittuario;
   startRoute: any;
   endRoute: any;
+  cancellPrenotationDate:any;
+  bookingPrenotationDate:any;
 
 
   constructor(public dialogRef: MatDialogRef<BookingModalComponent>,private router: Router,private matDialog : MatDialog,
@@ -45,6 +47,8 @@ export class BookingModalComponent implements OnInit {
       if(this.travelSelected.viaggioRouteInfo[i].routeId == this.routeSelected.id){
         this.startRoute=this.travelSelected.viaggioRouteInfo[i].startDate;
         this.endRoute=this.travelSelected.viaggioRouteInfo[i].endDate;
+        this.cancellPrenotationDate=this.travelSelected.viaggioRouteInfo[i].maximumWithdrawal;
+        this.bookingPrenotationDate=this.travelSelected.viaggioRouteInfo[i].maximumBookingDate;
         break;
       }
     }
