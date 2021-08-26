@@ -68,6 +68,7 @@ export class ViaggioRouteProgressBarComponent implements OnInit {
     this.viaggioRouteId = Number(this.route.snapshot.paramMap.get('id'));
     this.getViaggioRoute();
 
+
   }
 
   async getViaggioRoute(){

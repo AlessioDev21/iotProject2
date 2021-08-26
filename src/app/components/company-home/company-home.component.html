@@ -649,8 +649,8 @@
                                   <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) ) ">{{offer.endingCity}}</td>
                                   <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) )">{{offer.length}} Km</td>
                                   <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) )">{{offer.costoPerKm}} $</td>
-                                  <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) )">{{offer.startingDate | date : "dd/MM/YYYY HH:mm"}}</td>
-                                  <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) )">{{offer.endingDate | date : "dd/MM/YYYY HH:mm"}}</td>
+                                  <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) )">{{offer.startingDate | date : "dd/MM/YYYY HH:mm": '+0000'}}</td>
+                                  <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) )">{{offer.endingDate | date : "dd/MM/YYYY HH:mm": '+0000'}}</td>
                                   <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) ) && offer.maximumWithdrawal">{{offer.maximumWithdrawal}}</td>
                                   <td class="text-center" *ngIf="myIndex >= ((10*myIndex%10) +10*selectedPaginations) && myIndex < ((10*myIndex%10) + 10*(selectedPaginations + 1) ) && !offer.maximumWithdrawal"><mat-icon style="color: red;">close</mat-icon>
                                   </td>

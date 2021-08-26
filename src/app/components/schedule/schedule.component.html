@@ -16,7 +16,7 @@
 
 
             <div class=" widget-reminder-header mt-0 mb-3 text-dark op-8 font-weight-bold "  >
-              {{dates[myIndex] | date : "EEEE, dd MMMM  YYYY" | uppercase}}
+              {{datesFilter[myIndex] | date : "EEEE, dd MMMM  YYYY" | uppercase}}
             </div>
 
             <ul class="list-timeline list-timeline-primary ">
@@ -26,8 +26,8 @@
                 <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column " *ngIf="viaggioRoute.dayStart == day && ((viaggioRoute.startDateString > nowFormatted && viaggioRoute.endDateString > nowFormatted) ||(viaggioRoute.startDateString < nowFormatted && viaggioRoute.endDateString < nowFormatted))">
               <ul >
 
-                <li><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date : "HH:mm"}} - {{viaggioRoute.route.startCity}} </span></p></li>
-                <li *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2" >{{viaggioRoute.endDate | date : "HH:mm"}} - {{viaggioRoute.route.endCity}}</p></li>
+                <li><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"></p><span class="text-inverse op-8"> {{viaggioRoute.startDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.startCity}} </span></li>
+                <li *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2" >{{viaggioRoute.endDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.endCity}}</p></li>
 
               <div class="col" style="position: relative; top: 10px; right : 0px; color: rgb(38, 147, 180);" *ngIf="viaggioRoute.dayEnd == day">
                     <p style="position: relative; left: 30px;">{{viaggioRoute.distance}} Km</p>
@@ -54,8 +54,8 @@
               <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column " *ngIf="viaggioRoute.dayEnd == day && viaggioRoute.dayStart != day && ((viaggioRoute.startDateString > nowFormatted && viaggioRoute.endDateString > nowFormatted) ||(viaggioRoute.startDateString < nowFormatted && viaggioRoute.endDateString < nowFormatted))">
                 <ul >
 
-                  <li *ngIf="viaggioRoute.dayStart == day"><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date : "HH:mm"}} - {{viaggioRoute.route.startCity}} </span></p></li>
-                  <li *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2" >{{viaggioRoute.endDate | date : "HH:mm"}} - {{viaggioRoute.route.endCity}}</p></li>
+                  <li *ngIf="viaggioRoute.dayStart == day"><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.startCity}} </span></p></li>
+                  <li *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2" >{{viaggioRoute.endDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.endCity}}</p></li>
 
                 <div class="col" style="position: relative; top: 10px; right : 0px; color: rgb(38, 147, 180);">
                       <p style="position: relative; left: 30px;" >{{viaggioRoute.distance}} Km</p>
@@ -82,8 +82,8 @@
 
                 <p class="my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-primary font-weight-bold op-8 infinite animated flash" data-animate="flash" data-animate-infinite="1" data-animate-duration="3.5" style="animation-duration: 3.5s;"> &nbsp;&nbsp;&nbsp;&nbsp; Now</span></p>
                 <ul>
-                  <li><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date : "HH:mm"}} - {{viaggioRoute.route.startCity}} </span></p></li>
-                  <li  *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2">{{viaggioRoute.endDate | date : "HH:mm"}} - {{viaggioRoute.route.endCity}}</p></li>
+                  <li><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.startCity}} </span></p></li>
+                  <li  *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2">{{viaggioRoute.endDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.endCity}}</p></li>
                   <div class="col" style="position: relative; top: 10px; right : 0px; color: rgb(38, 147, 180);"  *ngIf="viaggioRoute.dayEnd == day">
                     <p style="position: relative; left: 30px;"> {{viaggioRoute.distance}} Km</p>
               </div>
@@ -103,13 +103,12 @@
                 </ul>
               </li>
 
-
                <!-- NOW con end date diverso dallo start date-->
                <li class="list-timeline-item p-0 pb-3 pb-lg-4 d-flex flex-wrap flex-column " *ngIf="viaggioRoute.dayEnd == day && viaggioRoute.dayStart != day && viaggioRoute.startDateString < nowFormatted && viaggioRoute.endDateString > nowFormatted">
                 <ul >
 
-                  <li *ngIf="viaggioRoute.dayStart == day"><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date : "HH:mm"}} - {{viaggioRoute.route.startCity}} </span></p></li>
-                  <li *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2" >{{viaggioRoute.endDate | date : "HH:mm"}} - {{viaggioRoute.route.endCity}}</p></li>
+                  <li *ngIf="viaggioRoute.dayStart == day"><p class="widget-reminder-time my-0 text-dark flex-fw text-sm text-uppercase"><span class="text-inverse op-8"> {{viaggioRoute.startDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.startCity}} </span></p></li>
+                  <li *ngIf="viaggioRoute.dayEnd == day"><p class="widget-reminder-time my-0 collapse flex-fw text-uppercase text-xs text-dark op-8 show" id="day-1-item-2" >{{viaggioRoute.endDate | date: 'HH:mm': '+0000'}} - {{viaggioRoute.route.endCity}}</p></li>
 
                 <div class="col" style="position: relative; top: 10px; right : 0px; color: rgb(38, 147, 180);">
                       <p style="position: relative; left: 30px;">{{viaggioRoute.distance}} Km</p>
@@ -129,6 +128,7 @@
 
                 </ul>
                   <p class="my-0 collapse flex-fw text-uppercase text-xs text-dark op-8" id="day-1-item-4"> </p>
+
 
                 </li>
             </div>

@@ -59,6 +59,8 @@ export class ScheduleComponent implements OnInit {
     this.viaggioId = JSON.parse(String(localStorage.getItem("viaggio")));
     this.getRoutesOfAVector();
     this.getDays();
+    setTimeout(()=>{console.log(this.viaggioRouteList), console.log(this.days); console.log(this.datesFilter)},3000)
+
 
 
 
@@ -265,8 +267,10 @@ export class ScheduleComponent implements OnInit {
 
   }
 
-  getDays(){
+  datesFilter:Date[]=[];
 
+  getDays(){
+    this.datesFilter=[];
     this.viaggioService.getById(this.viaggioId).subscribe(viaggio=>{
 
       //mi serve per acquisire la capacità del veicolo
@@ -279,6 +283,8 @@ export class ScheduleComponent implements OnInit {
         this.days.push(Number(String(viaggioRoute.startDate).substring(8,10)));
         this.days.push(Number(String(viaggioRoute.endDate).substring(8,10)));
 
+        console.log("queste è la data che inserisco " +viaggioRoute.startDate)
+
         this.dates.push(viaggioRoute.startDate);
         this.dates.push(viaggioRoute.endDate);
 
@@ -287,12 +293,22 @@ export class ScheduleComponent implements OnInit {
       }
 
       //elimino i doppioni
+
       this.days = this.days.filter(function(elem, index, self) {
         return index === self.indexOf(elem);
     })
-    this.dates = this.dates.filter(function(elem, index, self) {
-      return index === self.indexOf(elem);
-  })
+
+    for(let j=0; j<this.days.length;j++){
+      for(let i=0; i<this.dates.length;i++){
+        let d1=new Date(this.dates[i]);
+        if(d1.getDate()==this.days[j] ){
+          this.datesFilter.push(this.dates[i]);
+          break;
+        }
+      }
+    }
+
+
   //************************** */
 
     })
